@@ -309,6 +309,11 @@ html {
     z-index: 2;
 }
 
+.movie-card-wrapper {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
 .movie-title {
     color: #fff;
     font-size: 15px;
@@ -318,7 +323,7 @@ html {
 }
 
 /* =========================================
-    ADMIN SYSTEM STYLES (NEWLY ADDED)
+    ADMIN SYSTEM STYLES
 ========================================= */
 #adminLoginModal .modal-content,
 #adminDashboardModal .modal-content {
@@ -326,7 +331,6 @@ html {
     border-radius: 12px;
 }
 
-/* Admin Modals වල තියෙන Inputs Focus කරාම කහ පාටින් Glow වෙන්න */
 #adminLoginModal .form-control:focus,
 #adminDashboardModal .form-control:focus {
     border-color: #ffcc00 !important;
@@ -334,7 +338,6 @@ html {
     background-color: #1f1f1f !important;
 }
 
-/* Password වැරදුනොත් වැටෙන Error text එක ගැස්සෙන ඇනිමේෂන් එකක් */
 #loginError {
     font-size: 14px;
     font-weight: 600;
@@ -347,9 +350,31 @@ html {
     75% { transform: translateX(6px); }
 }
 
-/* Admin Dashboard එක ඇතුලේ තියෙන Labels */
 #addTrailerForm .form-label {
     letter-spacing: 0.5px;
     font-size: 14px;
     color: #e0e0e0;
+}
+
+/* ===================================================
+   ROBUST DYNAMIC DELETE BUTTON SYSTEM (NEWLY INTEGRATED)
+=================================================== */
+.delete-btn {
+    display: none !important; /* සාමාන්‍ය පරිශීලකයින්ට සම්පූර්ණයෙන්ම සඟවයි */
+    transition: all 0.3s ease !important;
+    background-color: #dc3545 !important;
+    border: none !important;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+/* Body එකට admin-mode ක්ලාස් එක වැටුණු සැනින් සියලුම පරණ හා අලුත් කාඩ් වල බොත්තම පෙන්වයි */
+body.admin-mode .delete-btn {
+    display: block !important; 
+}
+
+.delete-btn:hover {
+    background-color: #a71d2a !important;
+    transform: scale(1.1) !important;
+    opacity: 1 !important;
 }

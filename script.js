@@ -8,7 +8,7 @@ import {
     doc        
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// 1. ඔයාගේ Firebase Config එක
+// ඔයාගේ Firebase Config එක
 const firebaseConfig = {
   apiKey: "AIzaSyDRPro7oeI4z3faIUGoqW_xLZGF2dH-PwA",
   authDomain: "trailersbliss.firebaseapp.com",
@@ -19,14 +19,16 @@ const firebaseConfig = {
   measurementId: "G-NSXBVWL28C"
 };
 
-// 2. Firebase Initialize කිරීම
+// Firebase Initialize කිරීම
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Admin ලොග් වෙලාද ඉන්නේ කියලා බ්‍රවුසර් එකෙන් පරීක්ෂා කිරීම
-    let isAdmin = sessionStorage.getItem('isAdmin') === 'true';
+    // Page එක load වෙද්දීම කලින් Admin ලොග් වෙලා හිටියා නම් කෙලින්ම admin-mode එක සක්‍රීය කරයි
+    if (sessionStorage.getItem('isAdmin') === 'true') {
+        document.body.classList.add('admin-mode');
+    }
     
     // ==========================================
     // 1. Theme Toggle (Dark/Light Mode) Script
@@ -70,24 +72,19 @@ document.addEventListener("DOMContentLoaded", function() {
     // Page එක ලෝඩ් වෙද්දි Firebase එකෙන් ට්‍රේලර්ස් අරන් පෙන්නන්න
     loadTrailersFromFirebase();
 
-    // Admin Login එකේ Password එක Check කිරීම (ගැටළුව නිරාකරණය කළ කොටස)
+    // Admin Login එකේ Password එක Check කිරීම
     if (loginBtn) {
         loginBtn.addEventListener('click', function(e) {
-            e.preventDefault(); // Page එක රීලෝඩ් වෙන එක වළක්වයි
+            e.preventDefault(); 
             
             const password = adminPasswordInput.value;
             
             if (password === 'adminyenuka') { 
                 if(loginError) loginError.classList.add('d-none');
                 
-                // Admin සාර්ථකව ලොග් වුණාම Session එක හදනවා
+                // Admin සාර්ථකව ලොග් වුණාම Session එක සහ CSS Class එක එකතු කරනවා
                 sessionStorage.setItem('isAdmin', 'true');
-                isAdmin = true;
-
-                // දැනට පේජ් එකේ තියෙන ඔක්කොම Delete බොත්තම් පෙන්නන්න අණ දෙනවා
-                document.querySelectorAll('.delete-btn').forEach(btn => {
-                    btn.style.display = 'block';
-                });
+                document.body.classList.add('admin-mode');
                 
                 // Login Modal එක ආරක්ෂිතව වසා දැමීම
                 const loginModalEl = document.getElementById('adminLoginModal');
@@ -98,20 +95,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 if(adminPasswordInput) adminPasswordInput.value = '';
 
-                // කුඩා ප්‍රමාදයක් (මිලි තත්පර 400ක්) ලබා දී Dashboard Modal එක විවෘත කිරීම
-                // මෙසේ කරන්නේ Bootstrap Modal දෙකක් එකවර මාරු වීමේදී එන Error එක නැති කිරීමටයි.
+                // කුඩා ප්‍රමාදයක් ලබා දී Dashboard Modal (Add Form) එක විවෘත කිරීම
                 setTimeout(() => {
                     const dashboardModalEl = document.getElementById('adminDashboardModal');
                     if (dashboardModalEl) {
                         const dashboardModal = bootstrap.Modal.getInstance(dashboardModalEl) || new bootstrap.Modal(dashboardModalEl);
                         dashboardModal.show();
-                    } else {
-                        console.error("adminDashboardModal ID එක HTML එකේ සොයාගත නොහැක.");
                     }
                 }, 400);
                 
             } else {
-                // Password වැරදි නම් Error එක පෙන්නනවා
                 if(loginError) loginError.classList.remove('d-none');
             }
         });
@@ -133,14 +126,12 @@ document.addEventListener("DOMContentLoaded", function() {
             const docId = await saveTrailerToFirebase(newTrailer);
 
             if (docId) {
-                // ලැබුණු ID එකත් එක්කම UI එකට Add කරනවා
                 addTrailerToUI(newTrailer, docId);
                 alert('Trailer Added Successfully! 🎉');
             } else {
                 alert('දෝෂයක්! දත්ත එකතු කිරීමට නොහැකි විය.');
             }
 
-            // ෆෝම් එක හිස් කරලා Modal එක වහනවා
             addTrailerForm.reset();
             const dashboardModalEl = document.getElementById('adminDashboardModal');
             if (dashboardModalEl) {
@@ -154,7 +145,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // 4. FIREBASE DATABASE FUNCTIONS
     // ==========================================
 
-    // Firebase එකට Save කරන Function එක
     async function saveTrailerToFirebase(trailer) {
         try {
             const docRef = await addDoc(collection(db, "trailers"), trailer);
@@ -166,7 +156,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Firebase එකෙන් දත්ත අරන් පෙන්නන Function එක
     async function loadTrailersFromFirebase() {
         try {
             const querySnapshot = await getDocs(collection(db, "trailers"));
@@ -178,12 +167,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Firebase එකෙන් දත්ත Delete කරන Function එක
     async function deleteTrailerFromFirebase(docId, elementToRemove) {
+        const checkAdmin = sessionStorage.getItem('isAdmin') === 'true';
+        if (!checkAdmin) {
+            alert("අවසර නැත! මෙම ක්‍රියාව සිදුකළ හැක්කේ ඇඩ්මින්වරයෙකුට පමණි.");
+            return;
+        }
+
         if (confirm("ඔබට විශ්වාසද මෙම ට්‍රේලර් එක මකා දැමිය යුතුයි කියා?")) {
             try {
                 await deleteDoc(doc(db, "trailers", docId));
-                elementToRemove.remove(); // පිටුවෙන් අයින් කිරීම
+                elementToRemove.remove(); // පිටුවෙන් සම්පූර්ණයෙන්ම අයින් කිරීම
                 alert("Trailer Deleted Successfully! 🗑️");
             } catch (e) {
                 console.error("Error deleting document: ", e);
@@ -192,25 +186,32 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // YouTube Video Link එකෙන් Video ID එක ලබාගන්නා Function එක
+    function getYouTubeVideoId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    }
+
     // HTML එකට අලුත් Movie Card එකක් එකතු කරන Function එක
     function addTrailerToUI(trailer, docId) {
         if (!dynamicTrailers) return;
 
-        const colDiv = document.createElement('div');
-        colDiv.className = 'col-6 col-md-4 col-lg-3';
-        
-        // Admin නම් විතරක් Delete බොත්තම පෙන්වයි, නැත්නම් හංගයි
-        const displayStyle = isAdmin ? 'block' : 'none';
+        // YouTube ලින්ක් එකෙන් ID එක අරගෙන දෙවෙනි පිටුවට යවන ලින්ක් එක හදනවා
+        const videoId = getYouTubeVideoId(trailer.trailer);
+        const targetLink = videoId ? `video.html?id=${videoId}` : trailer.trailer;
 
+        const colDiv = document.createElement('div');
+        colDiv.className = 'col-6 col-md-4 col-lg-3 dynamic-movie-card';
+        
         colDiv.innerHTML = `
             <div class="movie-card-wrapper" style="position:relative;">
                 
-                <!-- Delete Button -->
-                <button class="btn btn-danger btn-sm delete-btn" style="position:absolute; top:8px; right:8px; z-index:10; border-radius: 5px; padding: 2px 8px; font-size: 12px; display: ${displayStyle};">
+                <button class="btn btn-danger btn-sm delete-btn" style="position:absolute; top:8px; right:8px; z-index:10; border-radius: 5px; padding: 4px 10px; font-size: 12px; font-weight: bold; box-shadow: 0px 2px 5px rgba(0,0,0,0.5);">
                     <i class="fas fa-trash"></i> Delete
                 </button>
 
-                <a href="${trailer.trailer}" class="movie-card" target="_blank">
+                <a href="${targetLink}" class="movie-card">
                     <div class="year-badge">${trailer.year}</div>
                     <div class="sub-badge">SINHALA SUB</div>
                     <img src="${trailer.image}" alt="Movie Poster">
@@ -221,13 +222,13 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
         `;
         
-        // අලුත් ට්‍රේලර් මුලටම එකතු කිරීමට
         dynamicTrailers.prepend(colDiv);
 
-        // Delete බොත්තමට ක්‍රියාකාරීත්වය එකතු කිරීම
+        // Delete බොත්තම ක්ලික් කළ විට ක්‍රියාත්මක වන කොටස
         const deleteBtn = colDiv.querySelector('.delete-btn');
         deleteBtn.addEventListener('click', function(e) {
-            e.preventDefault(); // ලින්ක් එක ක්ලික් වෙන එක වළක්වන්න
+            e.preventDefault(); 
+            e.stopPropagation(); // කාඩ් එක ක්ලික් වී යූටියුබ් යාම වළක්වයි
             deleteTrailerFromFirebase(docId, colDiv);
         });
     }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Playing - TrailersBliss LK</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .video-wrapper {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #111;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.15);
+            border: 1px solid rgba(255, 204, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar sticky-top" style="background-color: rgba(26, 26, 26, 0.95); backdrop-filter: blur(10px);">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand fw-bold text-uppercase m-0" href="trailersbliss-lk.html" style="color: #ffcc00 !important;">
+                🎬 TrailersBliss LK
+            </a>
+            <a href="trailersbliss-lk.html" class="btn btn-outline-warning btn-sm fw-bold">
+                <i class="fas fa-arrow-left me-2"></i>Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="video-wrapper">
+            <div class="ratio ratio-16x9">
+                <iframe id="trailerPlayer" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            
+            <div class="mt-4 text-center">
+                <h4 class="text-white fw-bold"><i class="fas fa-play-circle" style="color: #ffcc00;"></i> Now Playing Trailer</h4>
+                <p class="text-muted" style="font-size: 14px;">(Video is auto-playing. Click the speaker icon on the player to unmute)</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // URL එකෙන් YouTube ID එක ලබා ගැනීම
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('id');
+
+        if (videoId) {
+            // Autoplay=1 සහ Mute=1 ලබා දී වීඩියෝ එක ස්වයංක්‍රීයව ප්ලේ කිරීම
+            const iframe = document.getElementById('trailerPlayer');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&showinfo=0`;
+        } else {
+            document.querySelector('.video-wrapper').innerHTML = '<h3 class="text-danger text-center my-5">Video Not Found!</h3>';
+        }
+    </script>
+</body>
+</html>
