@@ -1,0 +1,355 @@
+/* ROOT VARIABLES (LIGHT MODE LOOK) */
+:root {
+    --bg-color: #f8f9fa;            
+    --section-bg: #ffffff;          
+    --card-bg: #ffffff;              
+    --text-color: #212529;          
+    --text-muted: #6c757d;          
+    --nav-bg: rgba(255, 255, 255, 0.7) !important; 
+    --nav-text: #212529 !important; 
+    --toggle-bg: #ccc;
+    --card-shadow: rgba(0, 0, 0, 0.05);
+}
+
+/* DARK MODE LOOK (Best for Movie Sites) */
+[data-theme="dark"] {
+    --bg-color: #121212;            
+    --section-bg: #1a1a1a;          
+    --card-bg: #22252a;              
+    --text-color: #f8f9fa;          
+    --text-muted: #a6b0ba;          
+    --nav-bg: rgba(26, 26, 26, 0.7) !important; 
+    --nav-text: #ffffff !important; 
+    --toggle-bg: #ffcc00; 
+    --card-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Base Styles */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding-top: 0 !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navbar Glassmorphism */
+.navbar {
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background-color 0.4s ease-in-out, backdrop-filter 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.navbar .navbar-brand, .navbar .navbar-nav .nav-link {
+    color: var(--nav-text) !important;
+    transition: color 0.3s;
+}
+
+.navbar .navbar-nav .nav-link {
+    opacity: 0.85;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    opacity: 1;
+    color: #ffcc00 !important; 
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200') no-repeat center center/cover;
+    height: 90vh;
+}
+
+/* Dynamic Sections */
+.services-section {
+    background-color: var(--section-bg);
+    transition: background-color 0.3s ease;
+}
+
+.section-main-title {
+    color: var(--text-color) !important;
+    border-left: 5px solid #ffcc00;
+}
+
+/* Movie/Trailer Button Custom Styles */
+.btn-warning {
+    background-color: #ffcc00 !important;
+    border-color: #ffcc00 !important;
+    color: #000 !important;
+}
+
+.btn-warning:hover {
+    background-color: #e6b800 !important;
+    border-color: #e6b800 !important;
+}
+
+.btn-outline-warning {
+    color: #ffcc00 !important;
+    border-color: #ffcc00 !important;
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffcc00 !important;
+    color: #000 !important;
+}
+
+/* Contact Form Dynamic Styles */
+#contactForm {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 15px var(--card-shadow) !important;
+    transition: background-color 0.3s ease;
+}
+
+#contactForm .form-control {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] #contactForm .form-control {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Theme Toggle Button */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-btn {
+    background-color: #22252a;
+    border: 2px solid #ffcc00;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 8px;
+    position: relative;
+    height: 30px;
+    width: 60px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .theme-btn {
+    background-color: #ffffff;
+    border-color: #ff9800;
+}
+
+.theme-btn .fa-sun { color: #ff9800; font-size: 14px; }
+.theme-btn .fa-moon { color: #f1c40f; font-size: 14px; }
+
+.theme-btn .ball {
+    background-color: #ffcc00;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    height: 20px;
+    width: 20px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] .theme-btn .ball {
+    background-color: #ff9800;
+}
+
+[data-theme="dark"] .theme-btn .ball {
+    transform: translateX(28px);
+}
+
+/* Premium Hamburger Menu Button */
+.premium-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1050;
+}
+
+.premium-hamburger span {
+    display: block;
+    width: 100%;
+    height: 3.5px;
+    background-color: #ffcc00;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Premium Sidebar Menu */
+.premium-sidebar {
+    background: rgba(10, 10, 10, 0.95) !important;
+    backdrop-filter: blur(10px);
+    width: 320px !important;
+    border-right: 1px solid rgba(255, 204, 0, 0.1);
+}
+
+.custom-close-btn {
+    filter: invert(1) grayscale(100%) brightness(200%);
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.custom-close-btn:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.premium-link {
+    color: #a0a0a0 !important;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 18px !important;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: all 0.4s ease;
+    text-decoration: none;
+}
+
+.premium-link i {
+    width: 30px;
+    font-size: 18px;
+    color: #555;
+}
+
+.premium-link:hover {
+    background: linear-gradient(90deg, rgba(255, 204, 0, 0.1) 0%, transparent 100%);
+    color: #ffffff !important;
+    transform: translateX(8px);
+}
+
+.premium-link.active {
+    background: rgba(255, 204, 0, 0.15);
+    color: #ffcc00 !important;
+    border-left: 4px solid #ffcc00;
+}
+
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(25px) saturate(200%) !important;
+}
+
+/* =========================================
+    MOVIE CARD STYLES
+========================================= */
+.movie-card {
+    position: relative;
+    display: block;
+    height: 320px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    background-color: #111;
+    z-index: 1;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(255, 204, 0, 0.3);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.year-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: 900;
+    padding: 5px 15px;
+    border-bottom-left-radius: 8px;
+    font-size: 13px;
+    z-index: 2;
+}
+
+.sub-badge {
+    position: absolute;
+    top: 80px;
+    left: -38px;
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: 900;
+    padding: 4px 15px;
+    font-size: 11px;
+    transform: rotate(-90deg);
+    z-index: 2;
+    letter-spacing: 1px;
+}
+
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 60px 10px 15px 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0) 100%);
+    text-align: center;
+    z-index: 2;
+}
+
+.movie-title {
+    color: #fff;
+    font-size: 15px;
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* =========================================
+    ADMIN SYSTEM STYLES (NEWLY ADDED)
+========================================= */
+#adminLoginModal .modal-content,
+#adminDashboardModal .modal-content {
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.15);
+    border-radius: 12px;
+}
+
+/* Admin Modals වල තියෙන Inputs Focus කරාම කහ පාටින් Glow වෙන්න */
+#adminLoginModal .form-control:focus,
+#adminDashboardModal .form-control:focus {
+    border-color: #ffcc00 !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 204, 0, 0.25) !important;
+    background-color: #1f1f1f !important;
+}
+
+/* Password වැරදුනොත් වැටෙන Error text එක ගැස්සෙන ඇනිමේෂන් එකක් */
+#loginError {
+    font-size: 14px;
+    font-weight: 600;
+    animation: shakeError 0.3s ease-in-out;
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+/* Admin Dashboard එක ඇතුලේ තියෙන Labels */
+#addTrailerForm .form-label {
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    color: #e0e0e0;
+}

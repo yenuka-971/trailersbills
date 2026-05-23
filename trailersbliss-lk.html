@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrailersBliss LK - Watch Movie Trailers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav id="mainNavbar" class="navbar sticky-top">
+        <div class="container d-flex align-items-center">
+            
+            <button class="premium-hamburger border-0 bg-transparent me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#premiumSidebar" aria-controls="premiumSidebar">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <a class="navbar-brand fw-bold text-uppercase m-0" href="#home" style="color: #ffcc00 !important;">
+                🎬 TrailersBliss LK
+            </a>
+            
+            <div class="theme-switch-wrapper ms-auto">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                    <span class="ball"></span>
+                </button>
+            </div>
+            
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section d-flex align-items-center text-center text-white">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3" style="color: #ffcc00; text-shadow: 2px 2px 12px rgba(0,0,0,0.9);">Welcome to TrailersBliss LK</h1>
+            <p class="lead mb-4" style="text-shadow: 1px 1px 6px rgba(0,0,0,0.9);">Your Gateway to the Cinematic Universe. Watch the Latest Movie Trailers Online.</p>
+            <a href="#trailers" class="btn btn-warning btn-lg me-3 fw-bold text-dark">Watch Trailers</a>
+            
+            <a href="https://whatsapp.com/channel/0029Vb7RSiPC1Fu40vuNrs1h" target="_blank" class="btn btn-outline-warning btn-lg fw-bold">
+                <i class="fab fa-whatsapp me-2"></i>Join Community
+            </a>
+        </div>
+    </section>
+
+    <section id="trailers" class="py-5 services-section">
+        <div class="container">
+            <h2 class="text-start fw-bold mb-4 px-2 section-main-title">
+                <i class="fas fa-bolt" style="color: #ffcc00;"></i> LATEST TRAILERS
+            </h2>
+            
+            <div class="row g-3" id="dynamic-trailers">
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="https://www.youtube.com" class="movie-card" target="_blank">
+                        <div class="year-badge">2026</div>
+                        <div class="sub-badge">SINHALA SUB</div>
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=600" alt="Movie Poster">
+                        <div class="movie-info">
+                            <h5 class="movie-title">The Super Mario Galaxy</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="https://www.youtube.com" class="movie-card" target="_blank">
+                        <div class="year-badge">2026</div>
+                        <div class="sub-badge">SINHALA SUB</div>
+                        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=600" alt="Movie Poster">
+                        <div class="movie-info">
+                            <h5 class="movie-title">Ready or Not</h5>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="https://www.youtube.com" class="movie-card" target="_blank">
+                        <div class="year-badge">2025</div>
+                        <div class="sub-badge">SINHALA SUB</div>
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600" alt="Movie Poster">
+                        <div class="movie-info">
+                            <h5 class="movie-title">The Boss Baby</h5>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="https://www.youtube.com" class="movie-card" target="_blank">
+                        <div class="year-badge">2026</div>
+                        <div class="sub-badge">SINHALA SUB</div>
+                        <img src="https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=600" alt="Movie Poster">
+                        <div class="movie-info">
+                            <h5 class="movie-title">Safe Protocol</h5>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="offcanvas offcanvas-start premium-sidebar" tabindex="-1" id="premiumSidebar" aria-labelledby="premiumSidebarLabel">
+        <div class="offcanvas-header pt-4 pb-3 px-4">
+            <h5 class="offcanvas-title fw-bold d-flex align-items-center" id="premiumSidebarLabel" style="color: #ffcc00; letter-spacing: 1px;">
+                <i class="fas fa-film me-2 fs-4"></i> TRAILERSBLISS
+            </h5>
+            <button type="button" class="btn-close custom-close-btn" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        
+        <div class="offcanvas-body px-4">
+            <ul class="navbar-nav flex-column gap-3 mt-3">
+                <li class="nav-item">
+                    <a class="nav-link premium-link active" href="#home" data-bs-dismiss="offcanvas"><i class="fas fa-home"></i> <span>Home</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link premium-link" href="#trailers" data-bs-dismiss="offcanvas"><i class="fas fa-fire"></i> <span>Latest Trailers</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link premium-link" href="#" data-bs-dismiss="offcanvas"><i class="fas fa-film"></i> <span>Movies</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link premium-link" href="#" data-bs-dismiss="offcanvas"><i class="fas fa-tv"></i> <span>TV Shows</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link premium-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal" data-bs-dismiss="offcanvas"><i class="fas fa-envelope"></i> <span>Contact Us</span></a>
+                </li>
+                
+                <li class="nav-item mt-4 border-top border-secondary pt-3">
+                    <a class="nav-link premium-link text-warning" href="#" data-bs-toggle="modal" data-bs-target="#adminLoginModal" data-bs-dismiss="offcanvas">
+                        <i class="fas fa-lock"></i> <span>Admin Login</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #1a1a1a; color: #fff; border: 1px solid #333;">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title fw-bold" id="contactModalLabel" style="color: #ffcc00;"><i class="fas fa-envelope me-2"></i> Contact Us</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pb-4">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Name</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <input type="email" class="form-control bg-dark text-white border-secondary" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Message</label>
+                            <textarea class="form-control bg-dark text-white border-secondary" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 fw-bold text-dark">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #1a1a1a; color: #fff; border: 1px solid #333;">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title fw-bold text-warning"><i class="fas fa-user-shield me-2"></i> Admin Panel</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pb-4">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Password</label>
+                        <input type="password" id="adminPassword" class="form-control bg-dark text-white border-secondary" placeholder="Enter password">
+                    </div>
+                    <button id="loginBtn" class="btn btn-warning w-100 fw-bold text-dark">Login</button>
+                    <p id="loginError" class="text-danger mt-2 d-none">Incorrect Password!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="adminDashboardModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="background-color: #1a1a1a; color: #fff; border: 1px solid #ffcc00;">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title fw-bold text-warning"><i class="fas fa-plus-circle me-2"></i> Add New Trailer</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pb-4">
+                    <form id="addTrailerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Movie Title</label>
+                                <input type="text" id="movieTitle" class="form-control bg-dark text-white border-secondary" required placeholder="Ex: Avatar 3">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Release Year</label>
+                                <input type="number" id="movieYear" class="form-control bg-dark text-white border-secondary" required placeholder="Ex: 2026">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-bold">Image URL (Poster)</label>
+                                <input type="url" id="movieImage" class="form-control bg-dark text-white border-secondary" required placeholder="https://example.com/image.jpg">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-bold">YouTube Trailer Link</label>
+                                <input type="url" id="movieTrailer" class="form-control bg-dark text-white border-secondary" required placeholder="https://youtube.com/...">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 fw-bold"><i class="fas fa-upload me-2"></i> Publish Trailer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script type="module" src="script.js"></script>
+</body>
+</html>
